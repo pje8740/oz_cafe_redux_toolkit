@@ -4,7 +4,7 @@ import OrderModal from "./OrderModal";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/redux";
 
-function Menu({ menu, cart, setCart }) {
+function Menu() {
   const dispatch = useDispatch();
   const menu = useSelector((state) => state.menu);
   const [modalOn, setModalOn] = useState(false);
