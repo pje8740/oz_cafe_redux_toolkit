@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Item from "./Item";
 import OrderModal from "./OrderModal";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../redux/redux";
 
 function Menu({ menu, cart, setCart }) {
+  const dispatch = useDispatch();
+  const menu = useSelector((state) => state.menu);
   const [modalOn, setModalOn] = useState(false);
   const [modalMenu, setModalMenu] = useState(null);
   if (!menu)
@@ -35,14 +39,13 @@ function Menu({ menu, cart, setCart }) {
           </section>
         );
       })}
-      {modalOn ? (
+      {modalOn && (
         <OrderModal
           modalMenu={modalMenu}
           setModalOn={setModalOn}
-          cart={cart}
-          setCart={setCart}
+          addToCart={(item) => dispatch(addToCart(item))}
         />
-      ) : null}
+      )}
     </>
   );
 }
